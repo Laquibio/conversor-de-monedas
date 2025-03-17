@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Monedas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <!-- Icono de la página (favicon) -->
+    <link rel="icon" href="../static/imgs/peso.png" type="image/x-icon">
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-green-600 p-4 text-white">
+        <div class="container mx-auto flex items-center">
+            <!-- Imagen con tamaño fijo -->
+            <img src="../static/imgs/peso.png" alt="Logo" class="h-10 w-10 mr-2"> <!-- Ajusta el tamaño (h-10 w-10) y el margen (mr-2) según necesites -->
+            <h1 class="text-2xl font-bold">Conversor de Monedas</h1>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container mx-auto p-4 flex-grow flex">
+        <!-- Mitad izquierda: Conversor de Monedas -->
+        <div class="w-1/2 pr-4">
+            <!-- Formulario de Conversión -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8 mt-8"> <!-- Margen superior ajustado -->
+                <h2 class="text-xl font-semibold mb-4">Conversor de Monedas</h2>
+                <form id="conversionForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="amount">
+                            Monto a Convertir
+                        </label>
+                        <input 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="amount" 
+                            name="amount" 
+                            type="number" 
+                            placeholder="Ingrese el monto" 
+                            min="0" 
+                            step="any"
+                            required
+                        >
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="fromCurrency">
+                            De
+                        </label>
+                        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromCurrency" name="fromCurrency" required>
+                            {% for code, name in currencies %}
+                                <option value="{{ code }}" {% if code == 'USD' %}selected{% endif %}>{{ code }} - {{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="toCurrency">
+                            A
+                        </label>
+                        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="toCurrency" name="toCurrency" required>
+                            {% for code, name in currencies %}
+                                <option value="{{ code }}" {% if code == 'MXN' %}selected{% endif %}>{{ code }} - {{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">
+                        Convertir
+                    </button>
+                </form>
+
+                <!-- Resultado de la Conversión -->
+                <div id="resultado" class="mt-6 p-4 bg-green-50 rounded-lg border border-green-200 hidden">
+                    <h3 class="text-lg font-semibold mb-2 text-green-800">Resultado de la Conversión</h3>
+                    <p class="text-gray-700">
+                        <span id="amountResult" class="font-bold"></span> 
+                        <span id="fromCurrencyResult" class="text-green-600"></span> = 
+                        <span id="convertedAmountResult" class="font-bold text-green-600"></span> 
+                        <span id="toCurrencyResult" class="text-green-600"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mitad derecha: Tipos de Divisas -->
+        <div class="w-1/2 pl-4">
+            <h2 class="text-xl font-semibold mb-4">Tipos de Divisas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {% for currency in currency_cards %}
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold">{{ currency.code }} - {{ currency.name }}</h3>
+                    <p class="text-gray-600">1 USD = {{ currency.rate }} {{ currency.code }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-600 p-4 text-white mt-auto">
+        <div class="container mx-auto text-center">
+            <p>Contacto: info@conversordemonedas.com | Teléfono: +123 456 789</p>
+            <p>&copy; 2025 Conversor de Monedas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+</body>
+</html>

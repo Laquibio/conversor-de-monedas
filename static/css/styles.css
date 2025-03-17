@@ -1,0 +1,11 @@
+body {
+    background: linear-gradient(135deg, #f0fdf4 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, #f0fdf4 25%, transparent 25%) -50px 0,
+                linear-gradient(315deg, #f0fdf4 25%, transparent 25%),
+                linear-gradient(45deg, #f0fdf4 25%, transparent 25%);
+    background-size: 100px 100px;
+    background-color: #dcfce7; /* Color de fondo base */
+}
+.bg-opacity {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente para el contenido */
+}
