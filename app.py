@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 
 # Tu API Key de ExchangeRate API
-API_KEY = 'be888a2659792c5d5be23e88'
+API_KEY = 'tu_api_key_aqui'
 
 @app.route('/')
 def index():
