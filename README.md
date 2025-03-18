@@ -3,7 +3,7 @@ Instalación
 
 <h3>1. Clona el repositorio:</h3>
     
-        git clone https://github.com/Laquibio/conversor-monedas.git
+        git clone https://github.com/Laquibio/conversor-de-monedas.git
 
 <h3>2. Navega a la carpeta del proyecto</h3>
     
